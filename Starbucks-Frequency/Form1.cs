@@ -41,7 +41,7 @@ namespace Starbucks_Frequency
         public const int WM_LBUTTONDOWN = 0x201;
         public const int WM_LBUTTONUP = 0x202;
 
-        string AppPlayerName = "NoxPlayer2";
+        string AppPlayerName = "NoxPlayer4";
 
         static string[] AppPlayerNames = { "NoxPlayer", "NoxPlayer1", "NoxPlayer2", "NoxPlayer3" };
 
@@ -65,6 +65,7 @@ namespace Starbucks_Frequency
         Bitmap min_img = null;
         Bitmap reservation_img = null;
         Bitmap red_img = null;
+        Bitmap test_img = null;
 
         static Bitmap bmp;
         static bool ERR = false;
@@ -73,6 +74,8 @@ namespace Starbucks_Frequency
         public Form1()
         {
             InitializeComponent();
+
+            bunifuDropdown1.selectedIndex = 0;
 
             gift_c_img = new Bitmap(@"img\gift_c_img.PNG");
             gift_img = new Bitmap(@"img\gift_img.PNG");
@@ -84,6 +87,7 @@ namespace Starbucks_Frequency
             min_img = new Bitmap(@"img\min.PNG");
             reservation_img = new Bitmap(@"img\reservation.PNG");
             red_img = new Bitmap(@"img\red.png");
+            test_img = new Bitmap(@"img\test.png");
         }
 
         private void bunifuImageButton2_Click(object sender, EventArgs e)
@@ -139,7 +143,6 @@ namespace Starbucks_Frequency
 
             while (d)
             {
-                Debug.WriteLine("스바라마 ");
                 Thread.Sleep(1000);
                 if (InvokeRequired)
                 {
@@ -272,6 +275,48 @@ namespace Starbucks_Frequency
             }
         }
 
+        public void getBmp2(Bitmap img)
+        {
+            IntPtr findwindow = FindWindow(null, AppPlayerName);
+            if (findwindow != IntPtr.Zero)
+            {
+                //찾은 플레이어를 바탕으로 Graphics 정보를 가져옵니다.
+                Graphics Graphicsdata = Graphics.FromHwnd(findwindow);
+
+                //찾은 플레이어 창 크기 및 위치를 가져옵니다. 
+                Rectangle rect = Rectangle.Round(Graphicsdata.VisibleClipBounds);
+
+                full_width = rect.Width;
+                full_height = rect.Height;
+
+                //플레이어 창 크기 만큼의 비트맵을 선언해줍니다.
+                bmp = new Bitmap(rect.Width, rect.Height);
+
+                //비트맵을 바탕으로 그래픽스 함수로 선언해줍니다.
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    //찾은 플레이어의 크기만큼 화면을 캡쳐합니다.
+                    IntPtr hdc = g.GetHdc();
+                    PrintWindow(findwindow, hdc, 0x2);
+                    g.ReleaseHdc(hdc);
+                }
+
+                // pictureBox1 이미지를 표시해줍니다.
+                //pictureBox1.Image = bmp;
+
+                if (searchIMG(bmp, img) >= 0.8)
+                {
+                    //이미지 정중앙 클릭
+                    InClick((int)((maxloc.X + FindMat.Width / 2)), (int)((maxloc.Y + FindMat.Height / 2)));
+                    ERR = false;
+                }
+                else
+                {
+                    ERR = true;
+                }
+            }
+        }
+
         public double searchIMG(Bitmap screen_img, Bitmap find_img)
         {
             //find_img 크기를 스크린 이미지에 맞게 조절
@@ -325,9 +370,20 @@ namespace Starbucks_Frequency
             }
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            getBmp(test_img);
+        }
+
+        private void bunifuDropdown1_onItemSelected(object sender, EventArgs e)
+        {
+            Debug.WriteLine($"{bunifuDropdown1.selectedValue}");
+            AppPlayerName = bunifuDropdown1.selectedValue;
+        }
+
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
-            getBmp(min_img);
+            getBmp2(min_img);
 
             Thread acceptThread = new Thread(() => start());
             acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
