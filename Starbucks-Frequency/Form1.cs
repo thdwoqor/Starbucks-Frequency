@@ -38,6 +38,7 @@ namespace Starbucks_Frequency
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         public static extern IntPtr FindWindowEx(IntPtr Parent, IntPtr Child, string lpszClass, string lpszWindows);
 
+        public const int WM_MOUSEMOVE = 0x200;
         public const int WM_LBUTTONDOWN = 0x201;
         public const int WM_LBUTTONUP = 0x202;
 
@@ -57,6 +58,9 @@ namespace Starbucks_Frequency
 
         Bitmap gift_c_img = null;
         Bitmap gift_img = null;
+        Bitmap gift_c_img2 = null;
+        Bitmap gift_img2 = null;
+
         Bitmap lext_img = null;
         Bitmap today_img = null;
         Bitmap near_img = null;
@@ -66,6 +70,11 @@ namespace Starbucks_Frequency
         Bitmap reservation_img = null;
         Bitmap red_img = null;
         Bitmap test_img = null;
+
+        Bitmap bt1_img = null;
+        Bitmap bt2_img = null;
+        Bitmap bt3_img = null;
+        Bitmap bt4_img = null;
 
         static Bitmap bmp;
         static bool ERR = false;
@@ -77,8 +86,9 @@ namespace Starbucks_Frequency
 
             bunifuDropdown1.selectedIndex = 0;
 
-            gift_c_img = new Bitmap(@"img\gift_c_img.PNG");
-            gift_img = new Bitmap(@"img\gift_img.PNG");
+            gift_c_img2 = new Bitmap(@"img\gift_c_img2.PNG");
+            gift_img2 = new Bitmap(@"img\gift_img22.PNG");
+
             lext_img = new Bitmap(@"img\lext_img.PNG");
             today_img = new Bitmap(@"img\today_img.PNG");
             near_img = new Bitmap(@"img\near_img.PNG");
@@ -88,6 +98,12 @@ namespace Starbucks_Frequency
             reservation_img = new Bitmap(@"img\reservation.PNG");
             red_img = new Bitmap(@"img\red.png");
             test_img = new Bitmap(@"img\test.png");
+
+            bt1_img = new Bitmap(@"btimg\bt1.PNG");
+            bt2_img = new Bitmap(@"btimg\bt2.PNG");
+            bt3_img = new Bitmap(@"btimg\bt3.png");
+            bt4_img = new Bitmap(@"btimg\bt4.png");
+
         }
 
         private void bunifuImageButton2_Click(object sender, EventArgs e)
@@ -98,6 +114,12 @@ namespace Starbucks_Frequency
         public void start()
         {
             bool c = true;
+            if (bt == 1)
+            {
+                gift_img = gift_img2;
+                gift_c_img = gift_c_img2;
+            }
+
             while (c)
             {
                 if (InvokeRequired)
@@ -111,6 +133,7 @@ namespace Starbucks_Frequency
                 {
                     getBmp(gift_img);
                 }
+                
                 Thread.Sleep(100);
                 if (InvokeRequired)
                 {
@@ -180,7 +203,7 @@ namespace Starbucks_Frequency
                 int near_x = (int)((maxloc.X + FindMat.Width / 2 + 120) * change_size);
                 int near_y = (int)((maxloc.Y + FindMat.Height / 2 + 45) * change_size);
                 
-                Thread.Sleep(100);
+                Thread.Sleep(200);
                 if (InvokeRequired)
                 {
                     this.Invoke(new MethodInvoker(delegate ()
@@ -195,7 +218,7 @@ namespace Starbucks_Frequency
 
                 InClick(near_x, near_y);
 
-                Thread.Sleep(100);
+                Thread.Sleep(200);
                 if (InvokeRequired)
                 {
                     this.Invoke(new MethodInvoker(delegate ()
@@ -340,11 +363,24 @@ namespace Starbucks_Frequency
             {
                 //플레이어를 찾았을 경우 클릭이벤트를 발생시킬 핸들을 가져옵니다.
                 IntPtr lparam = new IntPtr(x | (y << 16));
-
                 //플레이어 핸들에 클릭 이벤트를 전달합니다.
                 SendMessage(findwindow, WM_LBUTTONDOWN, 1, lparam);
                 SendMessage(findwindow, WM_LBUTTONUP, 0, lparam);
             }
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern bool PostMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
+
+        public void NoxDrag(int X, int Y, int to_X, int to_Y)
+        {
+            IntPtr findwindow = FindWindow(null, AppPlayerName);
+            Y -= 30;
+            to_Y -= 30;
+            PostMessage(findwindow, WM_LBUTTONDOWN, 1, new IntPtr(Y * 0x10000 + X));
+            PostMessage(findwindow, WM_LBUTTONDOWN, 1, new IntPtr(to_Y * 0x10000 + to_X));
+            PostMessage(findwindow, WM_LBUTTONUP, 0, new IntPtr(to_Y * 0x10000 + to_X));
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -371,9 +407,26 @@ namespace Starbucks_Frequency
             AppPlayerName = bunifuDropdown1.selectedValue;
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
+        public static int bt = 1;
+
+        private void bunifuImageButton4_Click(object sender, EventArgs e)
         {
-            
+            if (bt != 1)
+            {
+                bunifuImageButton4.Image = bt4_img;
+                bunifuImageButton3.Image = bt1_img;
+                bt = 1;
+            }
+        }
+
+        private void bunifuImageButton3_Click(object sender, EventArgs e)
+        {
+            if (bt != 0)
+            {
+                bunifuImageButton4.Image = bt3_img;
+                bunifuImageButton3.Image = bt2_img;
+                bt = 0;
+            }
         }
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
