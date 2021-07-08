@@ -164,6 +164,7 @@ namespace Starbucks_Frequency
             bool e = true;
             while (e)
             {
+
                 Thread.Sleep(200);
                 if (InvokeRequired)
                 {
@@ -176,7 +177,9 @@ namespace Starbucks_Frequency
                 {
                     getBmp(near_img);
                 }
-
+                int near_x = (int)((maxloc.X + FindMat.Width / 2 + 120) * change_size);
+                int near_y = (int)((maxloc.Y + FindMat.Height / 2 + 45) * change_size);
+                
                 Thread.Sleep(100);
                 if (InvokeRequired)
                 {
@@ -190,20 +193,8 @@ namespace Starbucks_Frequency
                     getBmp(permit_img);
                 }
 
-                Thread.Sleep(100);
-                if (InvokeRequired)
-                {
-                    this.Invoke(new MethodInvoker(delegate ()
-                    {
-                        getBmp(reservation_img);
-                    }));
-                }
-                else
-                {
-                    getBmp(reservation_img);
-                }
+                InClick(near_x, near_y);
 
-                
                 Thread.Sleep(100);
                 if (InvokeRequired)
                 {
@@ -262,7 +253,7 @@ namespace Starbucks_Frequency
                 bmp = new Bitmap(bmp, resize);
                 change_size = full_width / pix_width;
 
-                if (searchIMG(bmp, img) >= 0.8)
+                if (searchIMG(bmp, img) >= 0.75)
                 {
                     //이미지 정중앙 클릭
                     InClick((int)((maxloc.X + FindMat.Width / 2) * change_size), (int)((maxloc.Y + FindMat.Height / 2) * change_size));
@@ -358,7 +349,6 @@ namespace Starbucks_Frequency
 
         private void button1_Click(object sender, EventArgs e)
         {
-            getBmp(today_img);
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -379,6 +369,11 @@ namespace Starbucks_Frequency
         {
             Debug.WriteLine($"{bunifuDropdown1.selectedValue}");
             AppPlayerName = bunifuDropdown1.selectedValue;
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            
         }
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
