@@ -14,7 +14,7 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
 이중 Multi-Drive를 실행합니다.
 
 <p align="center">
-	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/Multi-Drive.PNG?raw=true" alt="icon" width="40%" height="40%"/>
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/Multi-Drive.PNG?raw=true" alt="icon" width="60%" height="60%"/>
 </p>
 
 2. 앱플레이어 추가를 눌러서  
@@ -24,7 +24,7 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
     **`※ 주의 약 10개 이상 녹스 플레어를 사용하여 어플을 실행할경우 서버에서 비정상적인 움직임으로 감지합니다.`**
 
 <p align="center">
-	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/setting.png?raw=true" alt="icon" width="40%" height="40%"/>
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/setting.png?raw=true" alt="icon" width="60%" height="60%"/>
 </p>
 
 3. 시스템 설정 - 성능설정 - **`하 ( 1 Core CPU, 2048 MB 메모리 )` `기본모드( DirectX )`  `스마트폰 ( 720x1280 )`**
@@ -50,7 +50,7 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
     NoxPlayer2 46분 접속자수 20,000 명 대기 
     
     <p align="center">
-	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/ERR.PNG?raw=true" alt="icon" width="40%" height="40%"/>
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/ERR.PNG?raw=true" alt="icon" width="60%" height="60%"/>
 </p>
     
     * 위 와같이 텍스트만 뜰경우 실패  
