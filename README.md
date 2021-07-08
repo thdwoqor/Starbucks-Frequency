@@ -1,7 +1,10 @@
 # <span style="color:#006f3f">**Starbucks Frequency reservation**</span>
 
-스타벅스 프리퀀시 예약을 도와주는 프로그램 입니다.
+<p align="center">
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/main.png?raw=true" alt="icon" width="40%" height="40%"/>
+</p>
 
+스타벅스 프리퀀시 예약을 도와주는 프로그램 입니다.
 
 # <span style="color:#006f3f">**Prepare**</span>
 
@@ -63,3 +66,9 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
    - '스타벅스 앱'에서 현재 위치 정보 허용
    - 예약 가능 매장보기 클릭  
 4. 이후 수동으로 예약   
+
+# <span style="color:#006f3f">**success**</span>
+
+<p align="center">
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/success.jpg?raw=true" alt="icon" width="60%" height="60%"/>
+</p>
