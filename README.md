@@ -56,8 +56,8 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
 	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/ERR.PNG?raw=true" alt="icon" width="60%" height="60%"/>
 </p>
     
-    * 위 와같이 텍스트만 뜰경우 실패  
-    * 예약하기 버튼이 눌러지지 않을경우 실패  
+- 위 와같이 텍스트만 뜰경우 실패  
+- 예약하기 버튼이 눌러지지 않을경우 실패  
 3. 접속에 성공한 NoxPlayer 번호를 선택 후 실행  
    - 21 스타벅스 서머 데이_그린 클릭
    - 다음단계 클릭 
@@ -67,8 +67,17 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
    - 예약 가능 매장보기 클릭  
 4. 이후 수동으로 예약   
 
+# <span style="color:#006f3f">**limit**</span>
+1. 사람이 직접 시간을 맞추어 접속을 해야한다.
+   - 다음 프리퀀시가 동일한 방식으로 열린다면 프로그램이  적절한 대기열을 찾도록 하면 좋을것같다.
+2. 사실상 대기열을 뚫고 7:05~7:10분 이내에 접속한다면  
+   수동으로 예약을 해도 쉽게 성공해서 프로그램이 따로 필요없다.
+3. 이미지 인식 기반이여서 Nox플레이어 크기를 일정 수준 이하로   낮출경우 정확도가 떨어져서 인식을 못한다.
+
 # <span style="color:#006f3f">**success**</span>
 
 <p align="center">
-	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/success.jpg?raw=true" alt="icon" width="60%" height="60%"/>
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/success.jpg?raw=true" alt="icon" width="40%" height="40%"/>
 </p>
+
+
