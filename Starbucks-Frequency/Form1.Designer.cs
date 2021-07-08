@@ -37,7 +37,6 @@
             this.bunifuElipse1 = new ns1.BunifuElipse(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bunifuDropdown1 = new ns1.BunifuDropdown();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton2)).BeginInit();
@@ -134,23 +133,12 @@
             this.bunifuDropdown1.TabIndex = 4;
             this.bunifuDropdown1.onItemSelected += new System.EventHandler(this.bunifuDropdown1_onItemSelected);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(326, 224);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(458, 268);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.bunifuDropdown1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel1);
@@ -178,7 +166,6 @@
         private ns1.BunifuImageButton bunifuImageButton2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private ns1.BunifuDropdown bunifuDropdown1;
-        private System.Windows.Forms.Button button1;
     }
 }
 

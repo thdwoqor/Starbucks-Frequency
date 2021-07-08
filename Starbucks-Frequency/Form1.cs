@@ -372,7 +372,7 @@ namespace Starbucks_Frequency
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            getBmp(test_img);
+            
         }
 
         private void bunifuDropdown1_onItemSelected(object sender, EventArgs e)
