@@ -33,7 +33,7 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
 3. 시스템 설정 - 성능설정 - **`하 ( 1 Core CPU, 2048 MB 메모리 )` `기본모드( DirectX )`  `스마트폰 ( 720x1280 )`**
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/thdwoqor/Starbucks-Frequency/master/screenshots/%EA%B0%80%EC%83%81%EC%9C%84%EC%B9%98.png" alt="icon" width="10%" height="10%"/>
+	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/setting.png?raw=true" alt="icon" width="10%" height="10%"/>
 </p>
 
 4. NoxPlayer - ... - 가상위치(Ctrl+9) 설정  
