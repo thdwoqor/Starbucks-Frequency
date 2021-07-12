@@ -51,8 +51,9 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
 2. **`약 40~50 분 사이에 접속자수 10,000명 단위로 대기 할수 있게 증정품 예약하기 버튼을 눌러줍니다. `**  
    예) NoxPlayer1 45분 접속자수 10,000 명 대기  
     NoxPlayer2 46분 접속자수 20,000 명 대기 
-    - 텍스트만 뜰경우 실패  
     - 예약하기 버튼이 눌러지지 않을경우 실패
+    - 오류로 첫 페이지로 나가질경우 실패
+    - 텍스트만 뜰경우 실패  
     <p align="center">
 	<img src="https://github.com/thdwoqor/Starbucks-Frequency/blob/master/screenshots/ERR.PNG?raw=true" alt="icon" width="60%" height="60%"/>
 </p>
