@@ -1,16 +1,10 @@
 ﻿using OpenCvSharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Starbucks_Frequency
@@ -42,9 +36,7 @@ namespace Starbucks_Frequency
         public const int WM_LBUTTONDOWN = 0x201;
         public const int WM_LBUTTONUP = 0x202;
 
-        string AppPlayerName = "NoxPlayer4";
-
-        static string[] AppPlayerNames = { "NoxPlayer", "NoxPlayer1", "NoxPlayer2", "NoxPlayer3" };
+        string AppPlayerName = "NoxPlayer2";
 
         //녹스플레이어 크기를 저정할 변수
         double full_width = 0;
@@ -60,6 +52,11 @@ namespace Starbucks_Frequency
         Bitmap gift_img = null;
         Bitmap gift_c_img2 = null;
         Bitmap gift_img2 = null;
+        Bitmap gift_c_img3 = null;
+        Bitmap gift_img3 = null;
+
+        Bitmap bt_start = null;
+        Bitmap bt_stop = null;
 
         Bitmap lext_img = null;
         Bitmap today_img = null;
@@ -69,12 +66,15 @@ namespace Starbucks_Frequency
         Bitmap min_img = null;
         Bitmap reservation_img = null;
         Bitmap red_img = null;
-        Bitmap test_img = null;
+        //Bitmap test_img = null;
 
         Bitmap bt1_img = null;
         Bitmap bt2_img = null;
         Bitmap bt3_img = null;
         Bitmap bt4_img = null;
+        Bitmap bt5_img = null;
+        Bitmap bt6_img = null;
+        
 
         static Bitmap bmp;
         static bool ERR = false;
@@ -84,10 +84,10 @@ namespace Starbucks_Frequency
         {
             InitializeComponent();
 
-            bunifuDropdown1.selectedIndex = 0;
-
             gift_c_img2 = new Bitmap(@"img\gift_c_img2.PNG");
-            gift_img2 = new Bitmap(@"img\gift_img22.PNG");
+            gift_img2 = new Bitmap(@"img\gift_img2.PNG");
+            gift_c_img3 = new Bitmap(@"img\gift_c_img3.PNG");
+            gift_img3 = new Bitmap(@"img\gift_img3.PNG");
 
             lext_img = new Bitmap(@"img\lext_img.PNG");
             today_img = new Bitmap(@"img\today_img.PNG");
@@ -97,12 +97,17 @@ namespace Starbucks_Frequency
             min_img = new Bitmap(@"img\min.PNG");
             reservation_img = new Bitmap(@"img\reservation.PNG");
             red_img = new Bitmap(@"img\red.png");
-            test_img = new Bitmap(@"img\test.png");
+            //test_img = new Bitmap(@"img\test.png");
 
             bt1_img = new Bitmap(@"btimg\bt1.PNG");
             bt2_img = new Bitmap(@"btimg\bt2.PNG");
             bt3_img = new Bitmap(@"btimg\bt3.png");
             bt4_img = new Bitmap(@"btimg\bt4.png");
+            bt5_img = new Bitmap(@"btimg\bt5.png");
+            bt6_img = new Bitmap(@"btimg\bt6.png");
+
+            bt_start = new Bitmap(@"btimg\start.png");
+            bt_stop = new Bitmap(@"btimg\stop.png");
 
         }
 
@@ -111,13 +116,18 @@ namespace Starbucks_Frequency
             Application.Exit();
         }
 
+        static bool c, d, f;
         public void start()
         {
-            bool c = true;
+            c = true;
             if (bt == 1)
             {
                 gift_img = gift_img2;
                 gift_c_img = gift_c_img2;
+            }else if(bt == 2)
+            {
+                gift_img = gift_img3;
+                gift_c_img = gift_c_img3;
             }
 
             while (c)
@@ -126,12 +136,12 @@ namespace Starbucks_Frequency
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        getBmp(gift_img);
+                        getBmp(gift_img,1);
                     }));
                 }
                 else
                 {
-                    getBmp(gift_img);
+                    getBmp(gift_img,1);
                 }
                 
                 Thread.Sleep(100);
@@ -162,7 +172,7 @@ namespace Starbucks_Frequency
                 }
             }
 
-            bool d = true;
+            d = true;
 
             while (d)
             {
@@ -171,21 +181,21 @@ namespace Starbucks_Frequency
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        getBmp(red_img);
+                        getBmp(red_img,1);
                         if(!ERR)
                             d = false;
                     }));
                 }
                 else
                 {
-                    getBmp(red_img);
+                    getBmp(red_img,1);
                     if (!ERR)
                         d = false;
                 }
             }
 
-            bool e = true;
-            while (e)
+            f = true;
+            while (f)
             {
 
                 Thread.Sleep(200);
@@ -193,12 +203,12 @@ namespace Starbucks_Frequency
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        getBmp(near_img);
+                        getBmp(near_img,1);
                     }));
                 }
                 else
                 {
-                    getBmp(near_img);
+                    getBmp(near_img,1);
                 }
                 int near_x = (int)((maxloc.X + FindMat.Width / 2 + 120) * change_size);
                 int near_y = (int)((maxloc.Y + FindMat.Height / 2 + 45) * change_size);
@@ -208,12 +218,12 @@ namespace Starbucks_Frequency
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        getBmp(permit_img);
+                        getBmp(permit_img,1);
                     }));
                 }
                 else
                 {
-                    getBmp(permit_img);
+                    getBmp(permit_img,1);
                 }
 
                 InClick(near_x, near_y);
@@ -223,19 +233,19 @@ namespace Starbucks_Frequency
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        getBmp(near_g_img);
+                        getBmp(near_g_img,1);
                         if (searchIMG(bmp, near_g_img) >= 0.8)
                         {
-                            e = false;
+                            f = false;
                         }
                     }));
                 }
                 else
                 {
-                    getBmp(near_g_img);
+                    getBmp(near_g_img,1);
                     if (searchIMG(bmp, near_g_img) >= 0.8)
                     {
-                         e = false;
+                         f = false;
                     }
                 }
             }
@@ -243,7 +253,9 @@ namespace Starbucks_Frequency
 
         }
 
-        public void getBmp(Bitmap img)
+        #region 이미지 클릭
+
+        public void getBmp(Bitmap img,int modified)
         {
             IntPtr findwindow = FindWindow(null, AppPlayerName);
             if (findwindow != IntPtr.Zero)
@@ -272,56 +284,20 @@ namespace Starbucks_Frequency
                 // pictureBox1 이미지를 표시해줍니다.
                 //pictureBox1.Image = bmp;
 
-                System.Drawing.Size resize = new System.Drawing.Size((int)pix_width, (int)pix_height);
-                bmp = new Bitmap(bmp, resize);
-                change_size = full_width / pix_width;
+                if (modified == 1)
+                {
+                    System.Drawing.Size resize = new System.Drawing.Size((int)pix_width, (int)pix_height);
+                    bmp = new Bitmap(bmp, resize);
+                    change_size = full_width / pix_width;
+                }
 
                 if (searchIMG(bmp, img) >= 0.75)
                 {
                     //이미지 정중앙 클릭
-                    InClick((int)((maxloc.X + FindMat.Width / 2) * change_size), (int)((maxloc.Y + FindMat.Height / 2) * change_size));
-                    ERR = false;
-                }
-                else
-                {
-                    ERR = true;
-                }
-            }
-        }
-
-        public void getBmp2(Bitmap img)
-        {
-            IntPtr findwindow = FindWindow(null, AppPlayerName);
-            if (findwindow != IntPtr.Zero)
-            {
-                //찾은 플레이어를 바탕으로 Graphics 정보를 가져옵니다.
-                Graphics Graphicsdata = Graphics.FromHwnd(findwindow);
-
-                //찾은 플레이어 창 크기 및 위치를 가져옵니다. 
-                Rectangle rect = Rectangle.Round(Graphicsdata.VisibleClipBounds);
-
-                full_width = rect.Width;
-                full_height = rect.Height;
-
-                //플레이어 창 크기 만큼의 비트맵을 선언해줍니다.
-                bmp = new Bitmap(rect.Width, rect.Height);
-
-                //비트맵을 바탕으로 그래픽스 함수로 선언해줍니다.
-                using (Graphics g = Graphics.FromImage(bmp))
-                {
-                    //찾은 플레이어의 크기만큼 화면을 캡쳐합니다.
-                    IntPtr hdc = g.GetHdc();
-                    PrintWindow(findwindow, hdc, 0x2);
-                    g.ReleaseHdc(hdc);
-                }
-
-                // pictureBox1 이미지를 표시해줍니다.
-                //pictureBox1.Image = bmp;
-
-                if (searchIMG(bmp, img) >= 0.8)
-                {
-                    //이미지 정중앙 클릭
-                    InClick((int)((maxloc.X + FindMat.Width / 2)), (int)((maxloc.Y + FindMat.Height / 2)));
+                    if(modified==1)
+                        InClick((int)((maxloc.X + FindMat.Width / 2) * change_size), (int)((maxloc.Y + FindMat.Height / 2) * change_size));
+                    else
+                        InClick((int)((maxloc.X + FindMat.Width / 2)), (int)((maxloc.Y + FindMat.Height / 2)));
                     ERR = false;
                 }
                 else
@@ -349,7 +325,7 @@ namespace Starbucks_Frequency
                 //찾은 이미지의 유사도 및 위치 값을 받습니다. 
                 Cv2.MinMaxLoc(res, out minval, out maxval, out minloc, out maxloc);
 
-                Debug.WriteLine("찾은 이미지의 유사도 : " + maxval);
+                //Debug.WriteLine("찾은 이미지의 유사도 : " + maxval);
 
                 return maxval;
             }
@@ -369,6 +345,10 @@ namespace Starbucks_Frequency
             }
         }
 
+        #endregion
+
+        #region 마우스 위로 드래그
+
         [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern bool PostMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
 
@@ -380,12 +360,11 @@ namespace Starbucks_Frequency
             PostMessage(findwindow, WM_LBUTTONDOWN, 1, new IntPtr(Y * 0x10000 + X));
             PostMessage(findwindow, WM_LBUTTONDOWN, 1, new IntPtr(to_Y * 0x10000 + to_X));
             PostMessage(findwindow, WM_LBUTTONUP, 0, new IntPtr(to_Y * 0x10000 + to_X));
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
+        #endregion
+
+        #region 폼 이동
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -396,16 +375,15 @@ namespace Starbucks_Frequency
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            
-        }
+        #endregion
 
-        private void bunifuDropdown1_onItemSelected(object sender, EventArgs e)
-        {
-            Debug.WriteLine($"{bunifuDropdown1.selectedValue}");
-            AppPlayerName = bunifuDropdown1.selectedValue;
-        }
+        #region 버튼 클릭
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">이벤트 발생자</param>
+        /// <param name="e">이벤트 인자</param>
 
         public static int bt = 1;
 
@@ -413,6 +391,7 @@ namespace Starbucks_Frequency
         {
             if (bt != 1)
             {
+                bunifuImageButton5.Image = bt5_img;
                 bunifuImageButton4.Image = bt4_img;
                 bunifuImageButton3.Image = bt1_img;
                 bt = 1;
@@ -423,19 +402,103 @@ namespace Starbucks_Frequency
         {
             if (bt != 0)
             {
+                bunifuImageButton5.Image = bt5_img;
                 bunifuImageButton4.Image = bt3_img;
                 bunifuImageButton3.Image = bt2_img;
                 bt = 0;
             }
         }
+        private void bunifuImageButton5_Click(object sender, EventArgs e)
+        {
+            if (bt != 2)
+            {
+                bunifuImageButton5.Image = bt6_img;
+                bunifuImageButton4.Image = bt3_img;
+                bunifuImageButton3.Image = bt1_img;
+                bt = 2;
+            }
+        }
 
+        #endregion
+
+        #region 현재 실행중인 프로세서 출력
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">이벤트 발생자</param>
+        /// <param name="e">이벤트 인자</param>
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+        [DllImport("user32.dll")]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr ProcessId);
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        private const int SW_SHOWMAXIMIZED = 3;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            IntPtr handle = IntPtr.Zero;
+            uint pid = 0;
+            Process ps = null;
+
+            handle = GetForegroundWindow();        // 활성화 윈도우
+            GetWindowThreadProcessId(handle, out pid); // 핸들로 프로세스아이디 얻어옴
+            ps = Process.GetProcessById((int)pid); // 프로세스아이디로 프로세스 검색
+
+            if (ps.MainWindowTitle.Contains("Nox"))
+            {
+                bunifuCustomLabel1.Text = ps.MainWindowTitle;
+                AppPlayerName = bunifuCustomLabel1.Text;
+            }
+        }
+        #endregion
+
+        #region 실행
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">이벤트 발생자</param>
+        /// <param name="e">이벤트 인자</param>
+        static bool enable=false;
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
-            getBmp2(min_img);
-
             Thread acceptThread = new Thread(() => start());
-            acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
-            acceptThread.Start();
+            if (!enable)
+            {
+                getBmp(min_img, 0); //<<
+
+                if (bt != 0)
+                    NoxDrag(bmp.Width / 2, bmp.Height / 2, bmp.Width / 2, 0);
+
+                Thread.Sleep(200);
+
+                timer1.Enabled = false;
+
+                acceptThread.IsBackground = true;   // 부모 종료시 스레드 종료
+                acceptThread.Start();
+                enable = true;
+                bunifuImageButton1.Image = bt_stop;
+            }
+            else
+            {
+                c= false;
+                d= false;
+                f= false;
+
+                acceptThread.Interrupt();
+                acceptThread.Abort();
+
+                enable = false;
+                bunifuImageButton1.Image = bt_start;
+                timer1.Enabled = true;
+            }
         }
+
+        #endregion
     }
 }
