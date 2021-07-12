@@ -63,7 +63,8 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
 
 # <span style="color:#006f3f">**function**</span>
 1. 여러개의 Nox 플레이어가 있어도 현재 실행중인 Nox 플레이어를 인식하여 프로그램 실행
-2. 증정품 선택 - 예약 확인 과정까지 매크로
+2. **`증정품 선택 - 수령일/매장선택 - 예약확인`** 과정을 자동화
+3. 원하는 증정품으로 매크로 가능
 
 # <span style="color:#006f3f">**success**</span>
 
