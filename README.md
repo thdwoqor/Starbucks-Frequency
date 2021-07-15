@@ -73,3 +73,7 @@ NOX , Multi-Drive 두개의 파일이 생깁니다.
 </p>
 
 
+# <span style="color:#006f3f">**video**</span>
+
+
+https://youtu.be/Ow4n5rChruk
